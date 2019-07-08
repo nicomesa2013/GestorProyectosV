@@ -33,16 +33,15 @@ public class PnlInicio extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        BtnInicio = new javax.swing.JButton();
+        BtnAdministrador = new javax.swing.JButton();
+        BtnTrabajador = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 8, 0, 8, 0, 8, 0};
+        layout.columnWidths = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0};
         layout.rowHeights = new int[] {0, 8, 0, 8, 0};
         setLayout(layout);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Acceso");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -51,38 +50,37 @@ public class PnlInicio extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 23);
         add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("Usuario:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 8);
-        add(jLabel2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 67;
-        gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 23);
-        add(jTextField1, gridBagConstraints);
-
-        BtnInicio.setText("Inicio");
-        BtnInicio.addActionListener(new java.awt.event.ActionListener() {
+        BtnAdministrador.setText("Administrador");
+        BtnAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnInicioActionPerformed(evt);
+                BtnAdministradorActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 66;
-        gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 23);
-        add(BtnInicio, gridBagConstraints);
+        add(BtnAdministrador, gridBagConstraints);
+
+        BtnTrabajador.setText("Trabajador");
+        BtnTrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTrabajadorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 4;
+        add(BtnTrabajador, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicioActionPerformed
+    private void BtnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministradorActionPerformed
         // TODO add your handling code here:
-        visitador.cambiarTarjeta("Empresa");
-    }//GEN-LAST:event_BtnInicioActionPerformed
+        visitador.cambiarTarjeta("Proyecto");
+    }//GEN-LAST:event_BtnAdministradorActionPerformed
+
+    private void BtnTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTrabajadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnTrabajadorActionPerformed
 
     public void setVisitador(PrincipalVisitador visitador) {
         this.visitador = visitador;
@@ -90,10 +88,9 @@ public class PnlInicio extends javax.swing.JPanel {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnInicio;
+    private javax.swing.JButton BtnAdministrador;
+    private javax.swing.JButton BtnTrabajador;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private PrincipalVisitador visitador;
 }
