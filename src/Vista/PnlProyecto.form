@@ -88,17 +88,17 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
-                <Component class="Vista.PnlProyectoAgregarT" name="pnlProyectoAgregarT1">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                      <CardConstraints cardName="Tarea"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="Vista.PnlProyectoAgregarU" name="pnlProyectoAgregarU1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="Usuario"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="Vista.PnlProyectoAgregarT" name="pnlProyectoAgregarT1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="Tarea"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -677,14 +677,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="jList1">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="1">
-                            <StringItem index="0" value=" "/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
+                    <Component class="javax.swing.JList" name="ListProyectos">
                     </Component>
                   </SubComponents>
                 </Container>

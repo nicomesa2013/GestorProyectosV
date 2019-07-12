@@ -5,9 +5,12 @@
  */
 package Vista;
 
+import Controlador.EmpresaControlador;
+import Modelo.*;
 import PatronesDiseño.EmpresaVisitador;
 import PatronesDiseño.ProyectoVisitador;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.DefaultListModel;
 
 
@@ -24,6 +27,8 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
         initComponents();
         pnlProyectoAgregarT1.setVisitador(this);
         pnlProyectoAgregarU1.setVisitador(this);
+        proyectos = EmpresaControlador.getInstance().getProyectos(); 
+        cargarLista();
     }
 
     /**
@@ -42,8 +47,8 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
         jPanel1 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         pnlTarjetas = new javax.swing.JPanel();
-        pnlProyectoAgregarT1 = new Vista.PnlProyectoAgregarT();
         pnlProyectoAgregarU1 = new Vista.PnlProyectoAgregarU();
+        pnlProyectoAgregarT1 = new Vista.PnlProyectoAgregarT();
         PnlListaProyectos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         BtnUsuario = new javax.swing.JButton();
@@ -51,7 +56,7 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
         BtnTarea = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        ListProyectos = new javax.swing.JList();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -66,8 +71,8 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
 
         pnlTarjetas.setPreferredSize(new java.awt.Dimension(25, 254));
         pnlTarjetas.setLayout(new java.awt.CardLayout());
-        pnlTarjetas.add(pnlProyectoAgregarT1, "Tarea");
         pnlTarjetas.add(pnlProyectoAgregarU1, "Usuario");
+        pnlTarjetas.add(pnlProyectoAgregarT1, "Tarea");
 
         jSplitPane1.setRightComponent(pnlTarjetas);
 
@@ -140,12 +145,7 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
 
         PnlListaProyectos.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(ListProyectos);
 
         PnlListaProyectos.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -200,11 +200,33 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
         else if(tarjeta.equals("Usuario"))
             pnlProyectoAgregarU1.vaciarCampos();
     }
-    void cargarLista(){
+    
+   
+    public void cargarLista(){  
         modeloLista = new DefaultListModel();
-        jList1.setModel(modeloLista);
-        
-        
+        ListProyectos.setModel(modeloLista);
+        for (int i = 0; i < proyectos.size(); i++) {
+            modeloLista.addElement(proyectos.get(i).getNombre());
+        }
+    }
+    
+    public void agregarTarea(String nombre, String descripcion){
+        Tarea tarea = new Tarea(nombre, descripcion);
+        EmpresaControlador.getInstance().
+                agregarTareaAProyecto(ListProyectos.getSelectedIndex(), tarea);
+    }
+    
+    public void agregarUsuario(String nombre, Long id){
+        Usuario usuario = new Usuario(nombre, id);
+        EmpresaControlador.getInstance().agregarUsusarioAProyecto(ListProyectos.getSelectedIndex(), usuario);
+        for (int i = 0; i < proyectos.get(ListProyectos.getSelectedIndex()).getUsuarios().size(); i++) {
+            System.out.println(""+ proyectos.get(ListProyectos.getSelectedIndex()).getUsuarios().get(i).getNombre());
+            
+        }
+        for (int i = 0; i < usuario.getProyectos().size(); i++) {
+            System.out.println(""+usuario.getProyectos().get(i).getNombre());
+            
+        }
     }
     
     
@@ -213,9 +235,9 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
     private javax.swing.JButton BtnRegistro;
     private javax.swing.JButton BtnTarea;
     private javax.swing.JButton BtnUsuario;
+    private javax.swing.JList ListProyectos;
     private javax.swing.JPanel PnlListaProyectos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -228,4 +250,5 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
     // End of variables declaration//GEN-END:variables
     private EmpresaVisitador visitador;
     private DefaultListModel modeloLista;
+    private List<Proyecto> proyectos;
 }

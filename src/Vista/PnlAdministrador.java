@@ -14,16 +14,14 @@ import javax.swing.JList;
  *
  * @author Daniela Chaux
  */
-public class PnlEmpresa extends javax.swing.JPanel implements EmpresaVisitador{
+public class PnlAdministrador extends javax.swing.JPanel implements EmpresaVisitador{
 
     /**
      * Creates new form PnlEmpresa
      */
-    public PnlEmpresa() {
+    public PnlAdministrador() {
         initComponents();
-        pnlEmpresaPrincipal1.setVisitador(this);
-        pnlProyecto1.setVisitador(this);
-        pnlCrearProyecto1.setVisitador(this);
+        iniciarFormulario();
     }
     
 
@@ -77,6 +75,14 @@ public class PnlEmpresa extends javax.swing.JPanel implements EmpresaVisitador{
     }
     public void cambiarTarjetaAbuelo(String tarjeta){
         visitador.cambiarTarjeta("Inicio");
+    }
+    public void iniciarFormulario(){
+        pnlEmpresaPrincipal1.setVisitador(this);
+        pnlProyecto1.setVisitador(this);
+        pnlCrearProyecto1.setVisitador(this);
+    }
+    public void cargarLista(){
+        pnlProyecto1.cargarLista();
     }
 
     

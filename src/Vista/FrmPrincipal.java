@@ -21,8 +21,10 @@ public class FrmPrincipal extends javax.swing.JFrame implements PrincipalVisitad
         initComponents();
         pnlEmpresa1.setVisitador(this);
         pnlInicio1.setVisitador(this);
+        pnlInicioTrabajador1.setVisitador(this);
         
         setSize(800,600);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +39,8 @@ public class FrmPrincipal extends javax.swing.JFrame implements PrincipalVisitad
         jLabel1 = new javax.swing.JLabel();
         PnlCartas = new javax.swing.JPanel();
         pnlInicio1 = new Vista.PnlInicio();
-        pnlEmpresa1 = new Vista.PnlEmpresa();
+        pnlEmpresa1 = new Vista.PnlAdministrador();
+        pnlInicioTrabajador1 = new Vista.PnlTrabajadorPrincipal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +52,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements PrincipalVisitad
         PnlCartas.setLayout(new java.awt.CardLayout());
         PnlCartas.add(pnlInicio1, "Inicio");
         PnlCartas.add(pnlEmpresa1, "Empresa");
+        PnlCartas.add(pnlInicioTrabajador1, "Trabajador");
 
         getContentPane().add(PnlCartas, java.awt.BorderLayout.CENTER);
 
@@ -96,8 +100,9 @@ public class FrmPrincipal extends javax.swing.JFrame implements PrincipalVisitad
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlCartas;
     private javax.swing.JLabel jLabel1;
-    private Vista.PnlEmpresa pnlEmpresa1;
+    private Vista.PnlAdministrador pnlEmpresa1;
     private Vista.PnlInicio pnlInicio1;
+    private Vista.PnlTrabajadorPrincipal pnlInicioTrabajador1;
     // End of variables declaration//GEN-END:variables
 
 }

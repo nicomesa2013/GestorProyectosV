@@ -118,6 +118,7 @@ public class PnlEmpresaPrincipal extends javax.swing.JPanel {
 
     private void BtnVerProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerProyectoActionPerformed
         // TODO add your handling code here:
+        visitador.cargarLista();
         visitador.cambiarTarjeta("Proyecto");
     }//GEN-LAST:event_BtnVerProyectoActionPerformed
 

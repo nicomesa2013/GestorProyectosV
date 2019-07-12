@@ -75,11 +75,11 @@ public class PnlInicio extends javax.swing.JPanel {
 
     private void BtnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAdministradorActionPerformed
         // TODO add your handling code here:
-        visitador.cambiarTarjeta("Proyecto");
+        visitador.cambiarTarjeta("Empresa");
     }//GEN-LAST:event_BtnAdministradorActionPerformed
 
     private void BtnTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTrabajadorActionPerformed
-        // TODO add your handling code here:
+        visitador.cambiarTarjeta("Trabajador");
     }//GEN-LAST:event_BtnTrabajadorActionPerformed
 
     public void setVisitador(PrincipalVisitador visitador) {

@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.EmpresaControlador;
 import PatronesDiseño.ProyectoVisitador;
 
 /**
@@ -47,6 +48,11 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
         jLabel3.setText("Descripcion:");
 
         BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
 
         BtnCancelar.setText("Cancelar");
 
@@ -96,6 +102,12 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        // TODO add your handling code here:
+        visitador.agregarTarea(TxtNombre.getText(), TxtDescripcion.getText());
+        vaciarCampos();
+    }//GEN-LAST:event_BtnAgregarActionPerformed
 
     public void setVisitador(ProyectoVisitador visitador) {
         this.visitador = visitador;

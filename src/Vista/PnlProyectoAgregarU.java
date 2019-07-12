@@ -113,7 +113,8 @@ public class PnlProyectoAgregarU extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        // TODO add your handling code here:
+        visitador.agregarUsuario(TxtNombre.getText(),Long.parseLong(TxtIdentificacion.getText()));
+        vaciarCampos();
     }//GEN-LAST:event_BtnAgregarActionPerformed
     public void setVisitador(ProyectoVisitador visitador) {
         this.visitador = visitador;

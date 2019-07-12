@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.EmpresaControlador;
 import PatronesDiseño.EmpresaVisitador;
 
 /**
@@ -49,6 +50,11 @@ public class PnlCrearProyecto extends javax.swing.JPanel {
         });
 
         BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
 
         BtnCancelar.setText("Cancelar");
         BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,8 +111,20 @@ public class PnlCrearProyecto extends javax.swing.JPanel {
         visitador.cambiarTarjeta("Principal");
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        // TODO add your handling code here:
+        String nombre = TxtNombre.getText();
+        EmpresaControlador.getInstance().agregarProyecto(nombre);
+        vaciarCampos();
+        visitador.cambiarTarjeta("Principal");
+    }//GEN-LAST:event_BtnAgregarActionPerformed
+
     public void setVisitador(EmpresaVisitador visitador) {
         this.visitador = visitador;
+    }
+    
+    public void vaciarCampos(){
+        TxtNombre.setText("");
     }
 
     

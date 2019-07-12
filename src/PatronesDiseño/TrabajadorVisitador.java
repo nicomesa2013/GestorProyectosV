@@ -9,8 +9,7 @@ package PatronesDiseño;
  *
  * @author Daniela Chaux
  */
-public interface EmpresaVisitador {
-    void cambiarTarjeta(String tarejta);
-    void cambiarTarjetaAbuelo(String tarjeta);
-    void cargarLista();
+public interface TrabajadorVisitador {
+    void cambiarTarjeta(String tarjeta);
+    boolean inicioSesion(Long id);
 }
