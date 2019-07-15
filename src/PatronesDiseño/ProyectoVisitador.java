@@ -5,6 +5,7 @@
  */
 package PatronesDiseño;
 
+import Modelo.Proyecto;
 import javax.swing.JTextField;
 
 /**
@@ -13,6 +14,6 @@ import javax.swing.JTextField;
  */
 public interface ProyectoVisitador {
     void cambiarTarjeta(String tarjeta);
-    void agregarTarea(String nombre, String descripcion);
+    void agregarTarea(String nombre, String descripcion, Proyecto proyecto);
     void agregarUsuario(String nombre, Long id);
 }

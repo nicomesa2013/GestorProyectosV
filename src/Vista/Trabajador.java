@@ -7,8 +7,12 @@ package Vista;
 
 import Controlador.EmpresaControlador;
 import Modelo.*;
+import PatronesDiseño.TrabajadorVisitador;
+import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import org.joda.time.DateTime;
+import org.joda.time.Minutes;
 
 /**
  *
@@ -47,6 +51,7 @@ public class Trabajador extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btnRegistro = new javax.swing.JButton();
         btnVer = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         pnlTarea = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -59,10 +64,21 @@ public class Trabajador extends javax.swing.JPanel {
         btnParar = new javax.swing.JButton();
         btnSuspender = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtRealizado = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtRealizadoTarea = new javax.swing.JTextField();
+        rbtnPendiente = new javax.swing.JRadioButton();
+        rbtnFinalizado = new javax.swing.JRadioButton();
+        pnlSuspender = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtDescripcionSuspension = new javax.swing.JTextField();
+        btnFinalizarSuspension = new javax.swing.JButton();
 
+        listProyectos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                listProyectosMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(listProyectos);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
@@ -80,6 +96,18 @@ public class Trabajador extends javax.swing.JPanel {
         btnRegistro.setText("Registro");
 
         btnVer.setText("Ver");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlInfoUsuarioLayout = new javax.swing.GroupLayout(pnlInfoUsuario);
         pnlInfoUsuario.setLayout(pnlInfoUsuarioLayout);
@@ -101,7 +129,8 @@ public class Trabajador extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlInfoUsuarioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSalir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegistro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVer)))
@@ -125,7 +154,8 @@ public class Trabajador extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistro)
-                    .addComponent(btnVer))
+                    .addComponent(btnVer)
+                    .addComponent(btnSalir))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -145,27 +175,37 @@ public class Trabajador extends javax.swing.JPanel {
         jLabel10.setText("Estado:");
 
         btnParar.setText("Parar");
+        btnParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPararActionPerformed(evt);
+            }
+        });
 
         btnSuspender.setText("Suspender");
+        btnSuspender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuspenderActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Realizado:");
 
-        txtRealizado.addActionListener(new java.awt.event.ActionListener() {
+        txtRealizadoTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRealizadoActionPerformed(evt);
+                txtRealizadoTareaActionPerformed(evt);
             }
         });
 
-        btnGrEstado.add(jRadioButton1);
-        jRadioButton1.setText("Pendiente");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGrEstado.add(rbtnPendiente);
+        rbtnPendiente.setText("Pendiente");
+        rbtnPendiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rbtnPendienteActionPerformed(evt);
             }
         });
 
-        btnGrEstado.add(jRadioButton2);
-        jRadioButton2.setText("Finalizado");
+        btnGrEstado.add(rbtnFinalizado);
+        rbtnFinalizado.setText("Finalizado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,12 +234,12 @@ public class Trabajador extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbtnPendiente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
+                                .addComponent(rbtnFinalizado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                            .addComponent(txtRealizado))))
+                            .addComponent(txtRealizadoTarea))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,12 +259,12 @@ public class Trabajador extends javax.swing.JPanel {
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(rbtnPendiente)
+                        .addComponent(rbtnFinalizado)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtRealizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRealizadoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnParar)
@@ -235,6 +275,60 @@ public class Trabajador extends javax.swing.JPanel {
         pnlTarea.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlCartas.add(pnlTarea, "Tarea");
+
+        pnlSuspender.setLayout(new java.awt.BorderLayout());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Suspender");
+        pnlSuspender.add(jLabel7, java.awt.BorderLayout.PAGE_START);
+
+        jLabel9.setText("Descripcion:");
+
+        txtDescripcionSuspension.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionSuspensionActionPerformed(evt);
+            }
+        });
+
+        btnFinalizarSuspension.setText("Finalizar");
+        btnFinalizarSuspension.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarSuspensionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDescripcionSuspension, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnFinalizarSuspension)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtDescripcionSuspension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addComponent(btnFinalizarSuspension)
+                .addContainerGap())
+        );
+
+        pnlSuspender.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        pnlCartas.add(pnlSuspender, "Suspension");
 
         jSplitPane1.setRightComponent(pnlCartas);
 
@@ -256,30 +350,83 @@ public class Trabajador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRealizadoActionPerformed
+    private void txtRealizadoTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRealizadoTareaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRealizadoActionPerformed
+    }//GEN-LAST:event_txtRealizadoTareaActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbtnPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPendienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbtnPendienteActionPerformed
+
+    private void listProyectosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listProyectosMouseReleased
+        // TODO add your handling code here:
+        if(evt.getClickCount() >= 2){
+            proyecto = EmpresaControlador.getInstance().getProyecto(listProyectos.getSelectedIndex());
+            List<Tarea> tareas = proyecto.getTareas();
+            cargarListaTareas(tareas);
+        }
+    }//GEN-LAST:event_listProyectosMouseReleased
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        visitador.cambiarTarjeta("Inicio");
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        // TODO add your handling code here:
+        cambiarTarjeta("Tarea");
+        tarea = proyecto.getTareas().get(listTareas.getSelectedIndex());
+        llenarCamposTarea(tarea);
+        registroTrabajo = new RegistroTrabajo(new DateTime(), usuario, tarea);
+        EmpresaControlador.getInstance().agregarRTrabajo(registroTrabajo);
+    }//GEN-LAST:event_btnVerActionPerformed
+
+    private void txtDescripcionSuspensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionSuspensionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionSuspensionActionPerformed
+
+    private void btnFinalizarSuspensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarSuspensionActionPerformed
+        cerrarRSuspension();
+        cambiarTarjeta("InicioUsuario");
+    }//GEN-LAST:event_btnFinalizarSuspensionActionPerformed
+
+    private void btnSuspenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuspenderActionPerformed
+        cerrarRTarea();
+        cambiarTarjeta("Suspension");
+        registroSuspension = new RegistroSuspension(new DateTime(), usuario);
+        EmpresaControlador.getInstance().agregarRSuspension(registroSuspension);
+    }//GEN-LAST:event_btnSuspenderActionPerformed
+
+    private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
+        cerrarRTarea();
+        cambiarTarjeta("InicioUsuario");
+    }//GEN-LAST:event_btnPararActionPerformed
+
+    public void setVisitador(TrabajadorVisitador visitador) {
+        this.visitador = visitador;
+    }
     
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
     public void iniciarFormulario(Usuario usuario){
         setUsuario(usuario);
-        llenarCampos();
+        llenarCamposUsuario();
         cargarListaProyectos();
-        cargarListaTareas();
     }
-    public void llenarCampos(){
+    public void llenarCamposUsuario(){
         txtNombre.setText(usuario.getNombre());
         txtId.setText(Long.toString(usuario.getId()));
     }
+    public void llenarCamposTarea(Tarea tarea){
+        txtTarea.setText(""+ tarea.getNombre());
+        txtDescripcion.setText(""+ tarea.getDescripcion());
+        if(tarea.isEstado())
+            rbtnFinalizado.setSelected(true);
+        else
+            rbtnPendiente.setSelected(true);
+    }
     public void cargarListaProyectos(){
-        System.out.println("Cargo Lista proyecto");
-        System.out.println(""+usuario.getProyectos());
+        
         proyectos = usuario.getProyectos();
         modeloListaP = new DefaultListModel();
         for (int i = 0; i < proyectos.size(); i++) {
@@ -288,18 +435,51 @@ public class Trabajador extends javax.swing.JPanel {
         listProyectos.setModel(modeloListaP);
     }
     
-    public void cargarListaTareas(){
-        System.out.println("Cargo Lista tareas");
+    public void cargarListaTareas(List<Tarea> tareas){
         modeloListaT = new DefaultListModel();
-        for (int i = 0; i < proyectos.size(); i++) {
-            modeloListaP.addElement(proyectos.get(i).getNombre());
+        for (int i = 0; i < tareas.size(); i++) {
+           modeloListaT.addElement(tareas.get(i).getNombre());
         }
         listTareas.setModel(modeloListaT);
+    }    
+    public void vaciarCamposSuspension(){
+        txtDescripcionSuspension.setText("");
+    }
+    public void cambiarTarjeta(String tarjeta){
+        ((CardLayout) pnlCartas.getLayout()).show(pnlCartas, tarjeta);
+        switch (tarjeta) {
+            case "Tarea":
+                vaciarCamposTarea();
+                break;
+            case "Suspension":
+                vaciarCamposSuspension();
+                break;
+        }
+    }
+    public void vaciarCamposTarea(){
+        txtRealizadoTarea.setText("");
+    }
+    public void cerrarRTarea(){
+        tarea.setEstado(rbtnFinalizado.isSelected());
+        registroTrabajo.setFin(new DateTime());
+        registroTrabajo.setContador(difTime(registroTrabajo.getInicio(), registroTrabajo.getFin()));
+        System.out.println(""+ registroTrabajo.getContador().getMinutes());
+        registroTrabajo.setDescripcion(txtRealizadoTarea.getText());
+    }
+    public void cerrarRSuspension(){
+        registroSuspension.setFin(new DateTime());
+        registroSuspension.setTipoSuspesion(txtDescripcionSuspension.getText());
+        registroSuspension.setContador(difTime(registroSuspension.getInicio(), registroSuspension.getFin()));
+    }
+    public Minutes difTime(DateTime inicio, DateTime fin){
+        return Minutes.minutesBetween(inicio, fin);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFinalizarSuspension;
     private javax.swing.ButtonGroup btnGrEstado;
     private javax.swing.JButton btnParar;
     private javax.swing.JButton btnRegistro;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSuspender;
     private javax.swing.JButton btnVer;
     private javax.swing.JLabel jLabel1;
@@ -309,10 +489,11 @@ public class Trabajador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
@@ -320,16 +501,25 @@ public class Trabajador extends javax.swing.JPanel {
     private javax.swing.JList listTareas;
     private javax.swing.JPanel pnlCartas;
     private javax.swing.JPanel pnlInfoUsuario;
+    private javax.swing.JPanel pnlSuspender;
     private javax.swing.JPanel pnlTarea;
+    private javax.swing.JRadioButton rbtnFinalizado;
+    private javax.swing.JRadioButton rbtnPendiente;
     private javax.swing.JLabel txtDescripcion;
+    private javax.swing.JTextField txtDescripcionSuspension;
     private javax.swing.JLabel txtEstado;
     private javax.swing.JLabel txtId;
     private javax.swing.JLabel txtNombre;
-    private javax.swing.JTextField txtRealizado;
+    private javax.swing.JTextField txtRealizadoTarea;
     private javax.swing.JLabel txtTarea;
     // End of variables declaration//GEN-END:variables
+    private TrabajadorVisitador visitador;
     private DefaultListModel modeloListaP;
     private List<Proyecto> proyectos;
+    private Proyecto proyecto;
     private Usuario usuario;
+    private Tarea tarea; 
+    private RegistroTrabajo registroTrabajo;
+    private RegistroSuspension registroSuspension;
     private DefaultListModel modeloListaT;
 }

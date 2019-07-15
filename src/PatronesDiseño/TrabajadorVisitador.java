@@ -11,5 +11,6 @@ package PatronesDiseño;
  */
 public interface TrabajadorVisitador {
     void cambiarTarjeta(String tarjeta);
+    void cambiarTarjetaAbuelo(String tarjeta);
     boolean inicioSesion(Long id);
 }

@@ -36,9 +36,10 @@ public class PnlInicioTrabajador extends javax.swing.JPanel {
         TxtUsuairo = new javax.swing.JTextField();
         BtnIngresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 8, 0};
+        layout.columnWidths = new int[] {0, 8, 0, 8, 0};
         layout.rowHeights = new int[] {0, 8, 0, 8, 0};
         setLayout(layout);
 
@@ -75,6 +76,17 @@ public class PnlInicioTrabajador extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         add(jLabel2, gridBagConstraints);
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        add(btnSalir, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TxtUsuairoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUsuairoActionPerformed
@@ -91,6 +103,11 @@ public class PnlInicioTrabajador extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+       visitador.cambiarTarjetaAbuelo("Inicio");
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     public void setVisitador(TrabajadorVisitador visitador) {
         this.visitador = visitador;
     }
@@ -100,6 +117,7 @@ public class PnlInicioTrabajador extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnIngresar;
     private javax.swing.JTextField TxtUsuairo;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

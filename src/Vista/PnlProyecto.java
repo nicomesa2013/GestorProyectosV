@@ -188,6 +188,7 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
     private void BtnTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTareaActionPerformed
         // TODO add your handling code here:
         cambiarTarjeta("Tarea");
+        pnlProyectoAgregarT1.setProyecto(proyectos.get(ListProyectos.getSelectedIndex()));
     }//GEN-LAST:event_BtnTareaActionPerformed
     public void setVisitador(EmpresaVisitador visitador) {
         this.visitador = visitador;
@@ -210,8 +211,8 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
         }
     }
     
-    public void agregarTarea(String nombre, String descripcion){
-        Tarea tarea = new Tarea(nombre, descripcion);
+    public void agregarTarea(String nombre, String descripcion, Proyecto proyecto){
+        Tarea tarea = new Tarea(nombre, descripcion, proyecto);
         EmpresaControlador.getInstance().
                 agregarTareaAProyecto(ListProyectos.getSelectedIndex(), tarea);
     }
@@ -219,12 +220,8 @@ public class PnlProyecto extends javax.swing.JPanel implements ProyectoVisitador
     public void agregarUsuario(String nombre, Long id){
         Usuario usuario = new Usuario(nombre, id);
         EmpresaControlador.getInstance().agregarUsusarioAProyecto(ListProyectos.getSelectedIndex(), usuario);
-        for (int i = 0; i < proyectos.get(ListProyectos.getSelectedIndex()).getUsuarios().size(); i++) {
-            System.out.println(""+ proyectos.get(ListProyectos.getSelectedIndex()).getUsuarios().get(i).getNombre());
-            
-        }
         for (int i = 0; i < usuario.getProyectos().size(); i++) {
-            System.out.println(""+usuario.getProyectos().get(i).getNombre());
+            System.out.println(""+ usuario.getProyectos().get(i).getNombre());
             
         }
     }

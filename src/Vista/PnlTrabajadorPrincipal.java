@@ -24,6 +24,7 @@ public class PnlTrabajadorPrincipal extends javax.swing.JPanel implements Trabaj
     public PnlTrabajadorPrincipal() {
         initComponents();
         pnlInicioTrabajador1.setVisitador(this);
+        pnlTrabajador1.setVisitador(this);
     }
 
     /**

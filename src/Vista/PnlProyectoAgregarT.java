@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.EmpresaControlador;
+import Modelo.Proyecto;
 import PatronesDiseño.ProyectoVisitador;
 
 /**
@@ -105,10 +106,14 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         // TODO add your handling code here:
-        visitador.agregarTarea(TxtNombre.getText(), TxtDescripcion.getText());
+        visitador.agregarTarea(TxtNombre.getText(), TxtDescripcion.getText(), proyecto);
         vaciarCampos();
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+    
     public void setVisitador(ProyectoVisitador visitador) {
         this.visitador = visitador;
     }
@@ -129,5 +134,6 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+    private Proyecto proyecto;
     private ProyectoVisitador visitador;
 }
