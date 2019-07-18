@@ -9,16 +9,13 @@ import Controlador.EmpresaControlador;
 import Modelo.*;
 import PatronesDiseño.TrabajadorVisitador;
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
-import org.joda.time.Minutes;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
