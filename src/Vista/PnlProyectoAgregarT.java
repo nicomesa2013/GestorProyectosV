@@ -38,7 +38,6 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
         TxtDescripcion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BtnAgregar = new javax.swing.JButton();
-        BtnCancelar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -54,8 +53,6 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
                 BtnAgregarActionPerformed(evt);
             }
         });
-
-        BtnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,8 +73,6 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
                         .addComponent(TxtDescripcion))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnAgregar)))
                 .addContainerGap())
         );
@@ -97,9 +92,7 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAgregar)
-                    .addComponent(BtnCancelar))
+                .addComponent(BtnAgregar)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -126,7 +119,6 @@ public class PnlProyectoAgregarT extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
-    private javax.swing.JButton BtnCancelar;
     private javax.swing.JTextField TxtDescripcion;
     private javax.swing.JTextField TxtNombre;
     private javax.swing.JLabel jLabel1;

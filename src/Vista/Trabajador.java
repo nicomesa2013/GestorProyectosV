@@ -9,10 +9,18 @@ import Controlador.EmpresaControlador;
 import Modelo.*;
 import PatronesDiseño.TrabajadorVisitador;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 import org.joda.time.DateTime;
+import org.joda.time.Duration;
 import org.joda.time.Minutes;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 /**
  *
@@ -73,6 +81,19 @@ public class Trabajador extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txtDescripcionSuspension = new javax.swing.JTextField();
         btnFinalizarSuspension = new javax.swing.JButton();
+        pnlRegistro = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblRegistroTrabajo = new javax.swing.JTable();
+        btnListoRegistro = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblRegistroSuspensiones = new javax.swing.JTable();
+        jLabel14 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtTiempoSuspensionR = new javax.swing.JLabel();
 
         listProyectos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -94,6 +115,11 @@ public class Trabajador extends javax.swing.JPanel {
         jLabel4.setText("Tareas:");
 
         btnRegistro.setText("Registro");
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
+            }
+        });
 
         btnVer.setText("Ver");
         btnVer.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +142,7 @@ public class Trabajador extends javax.swing.JPanel {
             .addGroup(pnlInfoUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlInfoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                     .addGroup(pnlInfoUsuarioLayout.createSequentialGroup()
                         .addGroup(pnlInfoUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,7 +182,7 @@ public class Trabajador extends javax.swing.JPanel {
                     .addComponent(btnRegistro)
                     .addComponent(btnVer)
                     .addComponent(btnSalir))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pnlCartas.add(pnlInfoUsuario, "InicioUsuario");
@@ -221,7 +247,7 @@ public class Trabajador extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
+                        .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSuspender)
@@ -238,7 +264,7 @@ public class Trabajador extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rbtnFinalizado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                .addComponent(txtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
                             .addComponent(txtRealizadoTarea))))
                 .addContainerGap())
         );
@@ -265,7 +291,7 @@ public class Trabajador extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtRealizadoTarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnParar)
                     .addComponent(btnSuspender))
@@ -308,7 +334,7 @@ public class Trabajador extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDescripcionSuspension, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                        .addComponent(txtDescripcionSuspension, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnFinalizarSuspension)))
@@ -321,7 +347,7 @@ public class Trabajador extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtDescripcionSuspension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(btnFinalizarSuspension)
                 .addContainerGap())
         );
@@ -329,6 +355,105 @@ public class Trabajador extends javax.swing.JPanel {
         pnlSuspender.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pnlCartas.add(pnlSuspender, "Suspension");
+
+        pnlRegistro.setLayout(new java.awt.BorderLayout());
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Registro");
+        pnlRegistro.add(jLabel11, java.awt.BorderLayout.PAGE_START);
+
+        tblRegistroTrabajo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Proyecto", "Tarea", "Descripcion", "Tiempo", "Inicio", "Fin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblRegistroTrabajo);
+
+        btnListoRegistro.setText("Listo");
+        btnListoRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListoRegistroActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Registro de Trabajo:");
+
+        jLabel13.setText("Registro de Suspensiones:");
+
+        tblRegistroSuspensiones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Tiempo", "Inicio", "Fin"
+            }
+        ));
+        jScrollPane4.setViewportView(tblRegistroSuspensiones);
+
+        jLabel14.setText("Total Tiempo de Suspension:");
+
+        txtTiempoSuspensionR.setText(" ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTiempoSuspensionR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnListoRegistro))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListoRegistro)
+                    .addComponent(jLabel14)
+                    .addComponent(txtTiempoSuspensionR))
+                .addGap(9, 9, 9))
+        );
+
+        pnlRegistro.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        pnlCartas.add(pnlRegistro, "Registro");
 
         jSplitPane1.setRightComponent(pnlCartas);
 
@@ -376,7 +501,7 @@ public class Trabajador extends javax.swing.JPanel {
         cambiarTarjeta("Tarea");
         tarea = proyecto.getTareas().get(listTareas.getSelectedIndex());
         llenarCamposTarea(tarea);
-        registroTrabajo = new RegistroTrabajo(new DateTime(), usuario, tarea);
+        registroTrabajo = new RegistroTrabajo(new DateTime(), usuario, tarea, proyecto);
         EmpresaControlador.getInstance().agregarRTrabajo(registroTrabajo);
     }//GEN-LAST:event_btnVerActionPerformed
 
@@ -401,6 +526,15 @@ public class Trabajador extends javax.swing.JPanel {
         cambiarTarjeta("InicioUsuario");
     }//GEN-LAST:event_btnPararActionPerformed
 
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        cambiarTarjeta("Registro");
+    }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void btnListoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListoRegistroActionPerformed
+        // TODO add your handling code here:
+        cambiarTarjeta("InicioUsuario");
+    }//GEN-LAST:event_btnListoRegistroActionPerformed
+
     public void setVisitador(TrabajadorVisitador visitador) {
         this.visitador = visitador;
     }
@@ -414,6 +548,8 @@ public class Trabajador extends javax.swing.JPanel {
         cargarListaProyectos();
     }
     public void llenarCamposUsuario(){
+        if(modeloListaT != null)
+            modeloListaT.removeAllElements();
         txtNombre.setText(usuario.getNombre());
         txtId.setText(Long.toString(usuario.getId()));
     }
@@ -426,7 +562,6 @@ public class Trabajador extends javax.swing.JPanel {
             rbtnPendiente.setSelected(true);
     }
     public void cargarListaProyectos(){
-        
         proyectos = usuario.getProyectos();
         modeloListaP = new DefaultListModel();
         for (int i = 0; i < proyectos.size(); i++) {
@@ -441,7 +576,68 @@ public class Trabajador extends javax.swing.JPanel {
            modeloListaT.addElement(tareas.get(i).getNombre());
         }
         listTareas.setModel(modeloListaT);
-    }    
+    } 
+    public void cargarTablaRegistroTrabajo(List<Registro> registros){
+        int numero = ((DefaultTableModel)tblRegistroTrabajo.getModel()).getRowCount();
+        PeriodFormatter ptf = new PeriodFormatterBuilder().appendHours()
+                .appendSuffix("h")
+                .appendMinutes()
+                .appendSuffix("m")
+                .appendSeconds()
+                .appendSuffix("s")
+                .toFormatter();
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss");
+        for (int i = 0; i < numero; i++) {
+            ((DefaultTableModel)tblRegistroTrabajo.getModel()).removeRow(0);
+        }
+        modeloTablaRT = (DefaultTableModel) tblRegistroTrabajo.getModel();
+        for (int i = 0; i < registros.size(); i++) {
+            String proyecto = ((RegistroTrabajo)registros.get(i)).getProyecto().getNombre();
+            String tarea = ((RegistroTrabajo)registros.get(i)).getTarea().getNombre();
+            String descripcion = registros.get(i).getDescripcion();
+            String contador = ptf.print(registros.get(i).getContador().toPeriod());
+            String inicio = registros.get(i).getInicio().toString(dtf);
+            String fin = registros.get(i).getFin().toString(dtf);
+            modeloTablaRT.addRow(new Object[]{
+                proyecto,
+                tarea,
+                descripcion,
+                contador,
+                inicio,
+                fin
+            });
+        }
+        tblRegistroTrabajo.setModel(modeloTablaRT);
+    }
+    public void cargarTablaRegistroSuspensiones(List<Registro> registros){
+        int numero = ((DefaultTableModel)tblRegistroSuspensiones.getModel()).getRowCount();
+        PeriodFormatter ptf = new PeriodFormatterBuilder().appendHours()
+                .appendSuffix("h")
+                .appendMinutes()
+                .appendSuffix("m")
+                .appendSeconds()
+                .appendSuffix("s")
+                .toFormatter();
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss");
+        
+        for (int i = 0; i < numero; i++) {
+            ((DefaultTableModel)tblRegistroSuspensiones.getModel()).removeRow(0);
+        }
+        modeloTablaRS = (DefaultTableModel) tblRegistroSuspensiones.getModel();
+        for (int i = 0; i < registros.size(); i++) {
+            String descripcion = registros.get(i).getDescripcion();
+            String contador = ptf.print(registros.get(i).getContador().toPeriod());
+            String inicio = registros.get(i).getInicio().toString(dtf);
+            String fin = registros.get(i).getFin().toString(dtf);
+            modeloTablaRS.addRow(new Object[]{
+                descripcion,
+                contador,
+                inicio,
+                fin
+            });
+        }
+        tblRegistroSuspensiones.setModel(modeloTablaRS);
+    }
     public void vaciarCamposSuspension(){
         txtDescripcionSuspension.setText("");
     }
@@ -454,29 +650,33 @@ public class Trabajador extends javax.swing.JPanel {
             case "Suspension":
                 vaciarCamposSuspension();
                 break;
+            case "Registro":
+                cargarTablaRegistroTrabajo(usuario.getRegistroTrabajos());
+                cargarTablaRegistroSuspensiones(usuario.getRegistroSuspensiones());
+                txtTiempoSuspensionR.setText(EmpresaControlador.getInstance().sumarTiemposSuspensiones(usuario.getRegistroSuspensiones()).toString());
         }
     }
     public void vaciarCamposTarea(){
         txtRealizadoTarea.setText("");
     }
     public void cerrarRTarea(){
-        tarea.setEstado(rbtnFinalizado.isSelected());
-        registroTrabajo.setFin(new DateTime());
-        registroTrabajo.setContador(difTime(registroTrabajo.getInicio(), registroTrabajo.getFin()));
-        System.out.println(""+ registroTrabajo.getContador().getMinutes());
-        registroTrabajo.setDescripcion(txtRealizadoTarea.getText());
+        DateTime fin = new DateTime();
+        Duration duration = new Duration(registroTrabajo.getInicio(), registroTrabajo.getFin());
+        boolean estado = rbtnFinalizado.isSelected();
+        String descripcion = txtRealizadoTarea.getText();
+        EmpresaControlador.getInstance().cerrarRTarea(duration, fin, estado, descripcion, registroTrabajo, tarea, usuario);
     }
     public void cerrarRSuspension(){
-        registroSuspension.setFin(new DateTime());
-        registroSuspension.setTipoSuspesion(txtDescripcionSuspension.getText());
-        registroSuspension.setContador(difTime(registroSuspension.getInicio(), registroSuspension.getFin()));
+        DateTime fin = new DateTime();
+        String descripcion  = txtDescripcionSuspension.getText();
+        Duration duration = new Duration(registroSuspension.getInicio(), registroSuspension.getFin());
+        EmpresaControlador.getInstance().cerrarRSuspension(duration, fin, descripcion, registroSuspension);
     }
-    public Minutes difTime(DateTime inicio, DateTime fin){
-        return Minutes.minutesBetween(inicio, fin);
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalizarSuspension;
     private javax.swing.ButtonGroup btnGrEstado;
+    private javax.swing.JButton btnListoRegistro;
     private javax.swing.JButton btnParar;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSalir;
@@ -484,6 +684,10 @@ public class Trabajador extends javax.swing.JPanel {
     private javax.swing.JButton btnVer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -494,17 +698,24 @@ public class Trabajador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JList listProyectos;
     private javax.swing.JList listTareas;
     private javax.swing.JPanel pnlCartas;
     private javax.swing.JPanel pnlInfoUsuario;
+    private javax.swing.JPanel pnlRegistro;
     private javax.swing.JPanel pnlSuspender;
     private javax.swing.JPanel pnlTarea;
     private javax.swing.JRadioButton rbtnFinalizado;
     private javax.swing.JRadioButton rbtnPendiente;
+    private javax.swing.JTable tblRegistroSuspensiones;
+    private javax.swing.JTable tblRegistroTrabajo;
     private javax.swing.JLabel txtDescripcion;
     private javax.swing.JTextField txtDescripcionSuspension;
     private javax.swing.JLabel txtEstado;
@@ -512,14 +723,17 @@ public class Trabajador extends javax.swing.JPanel {
     private javax.swing.JLabel txtNombre;
     private javax.swing.JTextField txtRealizadoTarea;
     private javax.swing.JLabel txtTarea;
+    private javax.swing.JLabel txtTiempoSuspensionR;
     // End of variables declaration//GEN-END:variables
     private TrabajadorVisitador visitador;
     private DefaultListModel modeloListaP;
+    private DefaultListModel modeloListaT;
+    private DefaultTableModel modeloTablaRT;
+    private DefaultTableModel modeloTablaRS;
     private List<Proyecto> proyectos;
     private Proyecto proyecto;
     private Usuario usuario;
     private Tarea tarea; 
     private RegistroTrabajo registroTrabajo;
     private RegistroSuspension registroSuspension;
-    private DefaultListModel modeloListaT;
 }

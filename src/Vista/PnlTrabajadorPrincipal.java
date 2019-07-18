@@ -71,7 +71,6 @@ public class PnlTrabajadorPrincipal extends javax.swing.JPanel implements Trabaj
     }
     public boolean inicioSesion(Long id){
         boolean bandera = false;
-        System.out.println("Entrooooo");
         usuarios = EmpresaControlador.getInstance().getUsuarios();
         for (int i = 0; i < usuarios.size(); i++) {
             if(usuarios.get(i).getId().equals(id)){
